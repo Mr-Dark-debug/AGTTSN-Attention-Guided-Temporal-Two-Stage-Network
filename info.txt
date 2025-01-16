@@ -1,0 +1,33 @@
+what this does is lesion detection and diagnosis in medical imaging.
+
+if we can use fudan universities dataset the :
+    we will use that dataset
+
+else if: 
+    we will try to use some other open source or large dataset library
+    to mimic or show that we can get better results
+
+with the same model and but better architecture design, if possible get the same hyperparameter
+
+
+some other open source or large dataset from hugging face:
+
+MedMNIST v2 (https://huggingface.co/datasets/albertvillanova/medmnist-v2?utm_source=chatgpt.com)
+A large-scale collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D, suitable for various medical imaging tasks. 
+MedMNIST v2 is a large-scale collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D images. The images are pre-processed into 28x28 (2D) or 28x28x28 (3D) dimensions, accompanied by corresponding classification labels. 
+NATURE
+While MedMNIST v2 primarily focuses on classification tasks, you can adapt it for detection and diagnosis by treating the classification labels as indicative of the presence or absence of specific lesions or conditions. This approach allows you to leverage the dataset for training models aimed at detecting and diagnosing lesions in medical images.
+
+To access and utilize the MedMNIST v2 dataset, you can visit the official website: 
+MEDMNIST
+
+Additionally, the dataset is available on Hugging Face:
+
+
+MedMCQA (https://huggingface.co/datasets/openlifescienceai/medmcqa?utm_source=chatgpt.com)
+A large-scale multiple-choice question answering dataset designed to address real-world medical entrance exam questions, covering 2.4k healthcare topics and 21 medical subjects. 
+HUGGING FACE
+
+
+Prompt2MedImage (https://huggingface.co/Nihirc/Prompt2MedImage?utm_source=chatgpt.com)
+A latent text-to-image diffusion model fine-tuned on medical images from the ROCO dataset, useful for generating medical images based on text prompts. 
