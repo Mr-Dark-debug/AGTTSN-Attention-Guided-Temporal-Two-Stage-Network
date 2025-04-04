@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Ultrasound Research Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .project-phase {
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4f46e5;
+            padding-left: 1rem;
+        }
+        .dataset-feature {
+            display: inline-block;
+            background-color: #e9e9ff;
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin: 2px;
+            font-size: 0.85rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+        .tag-primary {
+            background-color: #e0e7ff;
+            color: #4338ca;
+        }
+        .tag-secondary {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .phase-title {
+            position: relative;
+            padding-left: 30px;
+        }
+        .phase-title:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #4f46e5;
+            border-radius: 50%;
+        }
+        .note-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="page-container">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-center text-indigo-900 mb-4">Breast Cancer Ultrasound Research Project</h1>
+            <p class="text-lg text-gray-700 text-center mb-6">Datasets and Project Flow Structure for Attention-Guided Temporal Two-Stage Network for Weakly Supervised Breast Cancer Detection and Diagnosis</p>
+            <div class="w-40 h-1 bg-indigo-600 mx-auto"></div>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-4">1. Available Breast Ultrasound Datasets</h2>
+            
+            <div class="note-box">
+                <p class="text-sm"><i class="fas fa-info-circle mr-2"></i><strong>Note:</strong> The following datasets are publicly available for breast ultrasound research. When using these datasets, please ensure you comply with their respective terms of use and cite the original sources appropriately.</p>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr class="bg-indigo-100">
+                            <th>Dataset Name</th>
+                            <th>Source</th>
+                            <th>Size</th>
+                            <th>Class Distribution</th>
+                            <th>Annotation Type</th>
+                            <th>Key Features</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">BUSI (Breast Ultrasound Images)</td>
+                            <td><a href="https://www.kaggle.com/datasets/aryashah2k/breast-ultrasound-images-dataset" class="text-blue-600 hover:underline">Kaggle</a></td>
+                            <td>780 images (500×500 px)</td>
+                            <td>
+                                <span class="tag tag-primary">Normal: 133</span>
+                                <span class="tag tag-primary">Benign: 437</span>
+                                <span class="tag tag-primary">Malignant: 210</span>
+                            </td>
+                            <td>Lesion masks for segmentation</td>
+                            <td>
+                                <span class="dataset-feature">Segmentation masks</span>
+                                <span class="dataset-feature">PNG format</span>
+                                <span class="dataset-feature">600 patients</span>
+                            </td>
+                            <td>2019</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">BREAST-LESIONS-USG</td>
+                            <td><a href="https://www.cancerimagingarchive.net/collection/breast-lesions-usg/" class="text-blue-600 hover:underline">TCIA</a></td>
+                            <td>256 scans, 266 lesions</td>
+                            <td>
+                                <span class="tag tag-primary">Benign</span>
+                                <span class="tag tag-primary">Malignant</span>
+                            </td>
+                            <td>Image-level and tumor-level labels</td>
+                            <td>
+                                <span class="dataset-feature">Patient-level labels</span>
+                                <span class="dataset-feature">Biopsy verified</span>
+                                <span class="dataset-feature">DICOM format</span>
+                            </td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">BrEaST Dataset</td>
+                            <td><a href="https://www.nature.com/articles/s41597-024-02984-z" class="text-blue-600 hover:underline">Scientific Data (Nature)</a></td>
+                            <td>1,521 images</td>
+                            <td>
+                                <span class="tag tag-primary">Normal</span>
+                                <span class="tag tag-primary">Benign</span>
+                                <span class="tag tag-primary">Malignant</span>
+                            </td>
+                            <td>Image annotations and tumor labels</td>
+                            <td>
+                                <span class="dataset-feature">Multi-class</span>
+                                <span class="dataset-feature">Biopsy verified</span>
+                                <span class="dataset-feature">Curated benchmark</span>
+                            </td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">BUS-BRA</td>
+                            <td><a href="https://aapm.onlinelibrary.wiley.com/doi/abs/10.1002/mp.16812" class="text-blue-600 hover:underline">Medical Physics</a></td>
+                            <td>1,875 images from 1,064 patients</td>
+                            <td>
+                                <span class="tag tag-primary">Multiple classes</span>
+                            </td>
+                            <td>Lesion detection and segmentation</td>
+                            <td>
+                                <span class="dataset-feature">Multiple scanners</span>
+                                <span class="dataset-feature">Large patient cohort</span>
+                                <span class="dataset-feature">Anonymized</span>
+                            </td>
+                            <td>2023</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">BUS-UCLM</td>
+                            <td><a href="https://www.nature.com/articles/s41597-025-04562-3" class="text-blue-600 hover:underline">Scientific Data (Nature)</a></td>
+                            <td>683 images from 38 patients</td>
+                            <td>
+                                <span class="tag tag-primary">Benign: 174</span>
+                                <span class="tag tag-primary">Malignant: 90</span>
+                                <span class="tag tag-primary">Normal: 419</span>
+                            </td>
+                            <td>Lesion segmentation</td>
+                            <td>
+                                <span class="dataset-feature">High quality annotations</span>
+                                <span class="dataset-feature">Well documented</span>
+                            </td>
+                            <td>2025</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">OASBUD</td>
+                            <td><a href="https://zenodo.org/record/7341888" class="text-blue-600 hover:underline">Zenodo</a></td>
+                            <td>200 images</td>
+                            <td>
+                                <span class="tag tag-primary">Benign: 100</span>
+                                <span class="tag tag-primary">Malignant: 100</span>
+                            </td>
+                            <td>Lesion outlines and BI-RADS categories</td>
+                            <td>
+                                <span class="dataset-feature">Expert annotations</span>
+                                <span class="dataset-feature">BI-RADS classifications</span>
+                                <span class="dataset-feature">Balanced dataset</span>
+                            </td>
+                            <td>2018</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">UDIAT</td>
+                            <td><a href="http://www2.docm.mmu.ac.uk/STAFF/M.Yap/dataset.php" class="text-blue-600 hover:underline">Manchester Metropolitan University</a></td>
+                            <td>163 images from 53 patients</td>
+                            <td>
+                                <span class="tag tag-primary">Benign: 110</span>
+                                <span class="tag tag-primary">Malignant: 53</span>
+                            </td>
+                            <td>Ground truth lesion segmentations</td>
+                            <td>
+                                <span class="dataset-feature">Clinical data</span>
+                                <span class="dataset-feature">Lesion delineation</span>
+                            </td>
+                            <td>2012</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">DDTI Dataset</td>
+                            <td><a href="http://cimalab.intec.co/applications/thyroid/start.php" class="text-blue-600 hover:underline">CIMLab</a></td>
+                            <td>142 breast ultrasound images</td>
+                            <td>
+                                <span class="tag tag-primary">Benign</span>
+                                <span class="tag tag-primary">Malignant</span>
+                            </td>
+                            <td>Contours for nodules</td>
+                            <td>
+                                <span class="dataset-feature">Multi-organ (includes thyroid)</span>
+                                <span class="dataset-feature">Radiologist annotations</span>
+                            </td>
+                            <td>2016</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3 class="text-xl font-semibold text-indigo-700 mt-6 mb-3">Longitudinal and Multi-Center Datasets</h3>
+            <div class="overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr class="bg-indigo-100">
+                            <th>Dataset Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Features</th>
+                            <th>Accessibility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Multicenter Breast Ultrasound AI Dataset</td>
+                            <td>Multi-center</td>
+                            <td>Ultrasound data from multiple medical centers with diverse scanners and protocols</td>
+                            <td>
+                                <span class="dataset-feature">Multiple vendors</span>
+                                <span class="dataset-feature">Diverse populations</span>
+                                <span class="dataset-feature">Standardized protocol</span>
+                            </td>
+                            <td>Limited access (Research collaborations)</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Longitudinal Breast Cancer Treatment Response</td>
+                            <td>Longitudinal</td>
+                            <td>Sequential ultrasound images tracking treatment response over time</td>
+                            <td>
+                                <span class="dataset-feature">Multiple timepoints</span>
+                                <span class="dataset-feature">Treatment metadata</span>
+                                <span class="dataset-feature">Response annotations</span>
+                            </td>
+                            <td>Research institution access</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">QIN-Breast (Non-ultrasound)</td>
+                            <td>Longitudinal PET/CT & MRI</td>
+                            <td>Longitudinal imaging for treatment assessment (Not ultrasound, but could be complementary)</td>
+                            <td>
+                                <span class="dataset-feature">Quantitative imaging</span>
+                                <span class="dataset-feature">Treatment response</span>
+                            </td>
+                            <td><a href="https://www.cancerimagingarchive.net/collection/qin-breast/" class="text-blue-600 hover:underline">TCIA</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-4">2. Project Flow Structure</h2>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 1: Project Initialization & Data Collection (2-3 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Define research objectives and scope</li>
+                            <li>Conduct comprehensive literature review</li>
+                            <li>Identify and acquire relevant datasets</li>
+                            <li>Set up development environment and tools</li>
+                            <li>Create data management pipeline</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Project plan document</li>
+                            <li>Literature review summary</li>
+                            <li>Dataset acquisition and organization</li>
+                            <li>Initial GitHub repository</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 2: Data Preprocessing & Exploratory Analysis (3-4 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Standardize data format and resolution</li>
+                            <li>Implement data cleaning procedures</li>
+                            <li>Extract and analyze image features</li>
+                            <li>Perform statistical analysis of dataset characteristics</li>
+                            <li>Data augmentation strategy development</li>
+                            <li>Develop data visualization tools</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Preprocessed dataset</li>
+                            <li>Data quality report</li>
+                            <li>Exploratory data analysis report</li>
+                            <li>Data augmentation pipeline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 3: Model Architecture Design (4-5 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Design Detection Network (D-Net):
+                                <ul class="list-circle ml-6">
+                                    <li>Implement Vision Transformer or hybrid CNN-Transformer backbone</li>
+                                    <li>Design attention modules for improved lesion localization</li>
+                                    <li>Develop ROI prediction mechanism</li>
+                                </ul>
+                            </li>
+                            <li>Design Classification Network (C-Net):
+                                <ul class="list-circle ml-6">
+                                    <li>Implement EfficientNetV2 or comparable backbone</li>
+                                    <li>Design feature extraction capabilities</li>
+                                    <li>Develop classification head</li>
+                                </ul>
+                            </li>
+                            <li>Design Fusion Network (F-Net):
+                                <ul class="list-circle ml-6">
+                                    <li>Develop feature fusion strategies</li>
+                                    <li>Implement final classification layer</li>
+                                </ul>
+                            </li>
+                            <li>Implement attention-guided ROI refinement mechanism</li>
+                            <li>Design multi-criteria ROI optimization approach</li>
+                            <li>Implement temporal analysis module (if using longitudinal data)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Architecture design document</li>
+                            <li>Implementation of D-Net</li>
+                            <li>Implementation of C-Net</li>
+                            <li>Implementation of F-Net</li>
+                            <li>Integration of all components</li>
+                            <li>Code documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 4: Training Strategy Implementation (3-4 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Implement two-stage training strategy</li>
+                            <li>Develop candidate selection mechanism for ROI refinement</li>
+                            <li>Implement self-distillation approach</li>
+                            <li>Design temporal consistency loss (for longitudinal data)</li>
+                            <li>Implement uncertainty estimation techniques</li>
+                            <li>Develop training monitoring and visualization tools</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Complete training pipeline</li>
+                            <li>Training configuration files</li>
+                            <li>Training monitoring dashboard</li>
+                            <li>Documentation of training strategies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 5: Model Training & Optimization (5-6 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Perform first-stage model training:</li>
+                            <ul class="list-circle ml-6">
+                                <li>Train D-Net with fully annotated images</li>
+                                <li>Generate pseudo-ROIs for partially annotated images</li>
+                                <li>Apply candidate selection mechanism to refine ROIs</li>
+                                <li>Train C-Net using refined ROIs</li>
+                            </ul>
+                            <li>Perform second-stage model training:</li>
+                            <ul class="list-circle ml-6">
+                                <li>Integrate D-Net and C-Net with F-Net</li>
+                                <li>Apply self-distillation for joint optimization</li>
+                                <li>Optimize uncertainty estimation</li>
+                            </ul>
+                            <li>Perform hyperparameter optimization</li>
+                            <li>Implement model checkpointing and version tracking</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Trained model checkpoints</li>
+                            <li>Training logs and metrics</li>
+                            <li>Model optimization report</li>
+                            <li>Hyperparameter tuning results</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 6: Evaluation & Ablation Studies (3-4 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Develop comprehensive evaluation metrics:</li>
+                            <ul class="list-circle ml-6">
+                                <li>Classification metrics (accuracy, sensitivity, specificity, AUC)</li>
+                                <li>Detection metrics (IoU, precision, recall)</li>
+                                <li>Uncertainty metrics (expected calibration error)</li>
+                                <li>Temporal consistency metrics (for longitudinal data)</li>
+                            </ul>
+                            <li>Perform cross-validation on multiple datasets</li>
+                            <li>Conduct ablation studies:
+                                <ul class="list-circle ml-6">
+                                    <li>Effect of attention mechanism</li>
+                                    <li>Impact of multi-criteria ROI optimization</li>
+                                    <li>Contribution of self-distillation</li>
+                                    <li>Value of temporal analysis (if implemented)</li>
+                                    <li>Impact of uncertainty estimation</li>
+                                </ul>
+                            </li>
+                            <li>Compare with state-of-the-art methods</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Evaluation results report</li>
+                            <li>Ablation study results</li>
+                            <li>Comparative analysis document</li>
+                            <li>Visualization of model performance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 7: Explainability & Clinical Interpretation (2-3 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Implement explainable AI techniques:
+                                <ul class="list-circle ml-6">
+                                    <li>Grad-CAM visualizations</li>
+                                    <li>Feature importance analysis</li>
+                                    <li>Attention map visualization</li>
+                                </ul>
+                            </li>
+                            <li>Develop clinical interpretation guidelines</li>
+                            <li>Create visualization tools for clinical understanding</li>
+                            <li>Conduct case studies on specific examples</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Explainability report</li>
+                            <li>Visualization tools and examples</li>
+                            <li>Case study document</li>
+                            <li>Clinical interpretation guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-phase">
+                <h3 class="text-xl font-semibold text-indigo-700 phase-title mb-3">Phase 8: Documentation & Publication (4-5 weeks)</h3>
+                <div class="ml-6">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-800">Tasks:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Prepare comprehensive project documentation</li>
+                            <li>Create model usage guidelines</li>
+                            <li>Draft research paper:
+                                <ul class="list-circle ml-6">
+                                    <li>Introduction and background</li>
+                                    <li>Methodology and architecture details</li>
+                                    <li>Experimental setup and results</li>
+                                    <li>Discussion and future work</li>
+                                </ul>
+                            </li>
+                            <li>Review and finalize manuscript</li>
+                            <li>Prepare supplementary materials</li>
+                            <li>Select target journal or conference</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Deliverables:</h4>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>Complete project documentation</li>
+                            <li>Research paper manuscript</li>
+                            <li>Code repository with documentation</li>
+                            <li>Supplementary materials</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-4">3. Implementation Considerations</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-3">Technical Requirements</h3>
+                    <ul class="list-disc ml-6 text-gray-700">
+                        <li><strong>Computing Resources:</strong> High-performance GPU workstation or cloud computing (e.g., AWS, Google Cloud)</li>
+                        <li><strong>Programming Languages:</strong> Python 3.8+</li>
+                        <li><strong>Deep Learning Frameworks:</strong> PyTorch or TensorFlow 2.x</li>
+                        <li><strong>Key Libraries:</strong>
+                            <ul class="list-circle ml-6">
+                                <li>OpenCV for image processing</li>
+                                <li>scikit-learn for evaluation metrics</li>
+                                <li>NumPy/Pandas for data manipulation</li>
+                                <li>Matplotlib/Seaborn for visualization</li>
+                                <li>Jupyter notebooks for experimentation</li>
+                            </ul>
+                        </li>
+                        <li><strong>Version Control:</strong> Git/GitHub</li>
+                        <li><strong>Experiment Tracking:</strong> MLflow, TensorBoard, or Weights & Biases</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-3">Potential Challenges & Mitigations</h3>
+                    <ul class="list-disc ml-6 text-gray-700">
+                        <li><strong>Data Heterogeneity:</strong> Implement robust preprocessing to standardize images from different sources</li>
+                        <li><strong>Limited Annotated Data:</strong> Utilize weakly supervised learning and data augmentation strategies</li>
+                        <li><strong>Computational Complexity:</strong> Optimize model architecture and use efficient attention mechanisms</li>
+                        <li><strong>Model Interpretability:</strong> Incorporate explainable AI techniques from the beginning</li>
+                        <li><strong>Clinical Relevance:</strong> Engage with medical professionals for feedback on model outputs</li>
+                        <li><strong>Model Generalization:</strong> Use multi-center data and implement domain adaptation techniques</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-4">4. Expected Research Contributions</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Advanced ROI Selection</h3>
+                    <p class="text-gray-700">Development of a multi-criteria approach to ROI selection that outperforms single-criterion methods, providing more accurate lesion localization and diagnosis.</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Temporal Analysis</h3>
+                    <p class="text-gray-700">Incorporating the temporal dimension which is currently underexplored in ultrasound-based breast cancer diagnosis, enabling tracking of lesion changes over time.</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Uncertainty Quantification</h3>
+                    <p class="text-gray-700">Providing clinically relevant uncertainty estimates that can guide decision-making and improve trust in the model's predictions.</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Attention-Guided Refinement</h3>
+                    <p class="text-gray-700">Novel attention mechanism for guiding ROI refinement, improving the focus on diagnostically relevant regions in ultrasound images.</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Improved Self-Distillation</h3>
+                    <p class="text-gray-700">Enhanced self-distillation strategy that effectively transfers knowledge between detection and classification networks for improved performance.</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Clinical Applicability</h3>
+                    <p class="text-gray-700">Focus on explainability and clinical interpretation that bridges the gap between technical performance and clinical utility.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-600 pt-6 pb-10 border-t border-gray-200 mt-10">
+            <p>© 2025 Breast Cancer Ultrasound Research Project</p>
+            <p class="text-sm mt-2">This document provides a comprehensive plan for implementing the "Attention-Guided Temporal Two-Stage Network for Weakly Supervised Breast Cancer Detection and Diagnosis with Multi-Criteria ROI Optimization" research project.</p>
+        </footer>
+    </div>
+</body>
+</html>
